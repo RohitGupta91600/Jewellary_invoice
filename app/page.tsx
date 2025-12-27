@@ -147,7 +147,12 @@ export default function JewelleryBill() {
   /* ================= UI ================= */
   return (
     <div className="bg-gray-200 min-h-screen p-4">
-      <div className="mx-auto bg-white border-2 border-black p-3 text-[16px] text-black w-[794px]">
+      <div className="
+  mx-auto bg-white border-2 border-black p-3 text-black
+  w-full max-w-[794px]
+  text-[14px] sm:text-[16px]
+">
+
 
         {/* COMPANY */}
         <div className="flex border-b-2 border-black">

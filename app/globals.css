@@ -26,43 +26,84 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-/* ================= PRINT (A4) ================= */
+/* ================= PRINT (A4 FIXED) ================= */
 @media print {
+  /* reset */
+  html,
   body {
+    width: 210mm;
+    height: 297mm;
     background: white !important;
     color: black !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden;
   }
 
   @page {
     size: A4;
-    margin: 10mm;
+    margin: 8mm;
   }
 
-  /* hide buttons / controls */
+  /* hide non-print elements */
   .print\:hidden {
     display: none !important;
   }
 
-  /* clean inputs in print */
+  /* clean form fields */
   input,
   select,
-  button {
+  textarea {
     border: none !important;
     outline: none !important;
     box-shadow: none !important;
+    background: transparent !important;
+    padding: 0 !important;
   }
 
-  /* prevent table breaking */
+  button {
+    display: none !important;
+  }
+
+  /* tables should not break */
   table {
-    page-break-inside: avoid;
+    width: 100%;
     border-collapse: collapse;
+    page-break-inside: avoid;
   }
 
-  tr,
+  thead {
+    display: table-header-group;
+  }
+
+  tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+
   td,
   th {
     page-break-inside: avoid;
+  }
+
+  /* avoid accidental page breaks */
+  .no-break {
+    page-break-inside: avoid;
+  }
+}
+
+/* ================= MOBILE SCREEN OPTIMIZATION ================= */
+@media (max-width: 640px) {
+  body {
+    font-size: 13px;
+  }
+
+  table th,
+  table td {
+    padding: 2px;
   }
 }
